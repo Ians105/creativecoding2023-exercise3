@@ -23,6 +23,10 @@ float wall1Y = 100;
 float wall2Y = 200;
 float wall3Y = 300;
 
+float wall1X;
+float wall2X;
+float wall3X;
+
 float wall1HoleWidth = 300;
 float wall2HoleWidth = 200;
 float wall3HoleWidth = 100;
@@ -45,6 +49,9 @@ void setup() {
   shipY = 0;
 
   wallColor = color(247, 210, 60);
+  wall1X = 100;
+  wall2X = 200;
+  wall3X = 300;
 }
 
 void draw() {
@@ -68,13 +75,34 @@ void draw() {
     // draw walls
     stroke(wallColor);
     strokeWeight(5);
-    line(0, wall1Y, width, wall1Y);
-    line(0, wall2Y, width, wall2Y);
-    line(0, wall3Y, width, wall3Y);
+    
+    
+    line(0, wall1Y, wall1X, wall1Y);
+    line(wall1X+wall1HoleWidth, wall1Y, width, wall1Y);
+    
+    line(0, wall2Y, wall2X, wall2Y);
+    line(wall2X+wall2HoleWidth, wall2Y, width, wall2Y);
+    
+    line(0, wall3Y, wall3X, wall3Y);
+    line(wall3X+wall3HoleWidth, wall3Y, width, wall3Y);
+    
+    wall1X+=wall1Speed;
+    wall2X+=wall2Speed;
+    wall3X+=wall3Speed;
+    
+    if(wall1X+wall1HoleWidth>width || wall1X<0){
+      wall1Speed*=-1;
+    }
+    if(wall2X+wall2HoleWidth>width || wall2X<0){
+      wall2Speed*=-1;
+    }
+    if(wall3X+wall3HoleWidth>width || wall3X<0){
+      wall3Speed*=-1;
+    }
 
     if (shipY> winningLineY) {
       gameState = GAME_WIN;
-    } else if(ship )
+    }
 
     break;
 
