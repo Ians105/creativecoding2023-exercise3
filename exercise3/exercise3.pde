@@ -43,68 +43,82 @@ void setup() {
 
   shipX = width / 2 - shipWidth / 2;
   shipY = 0;
-  
+
   wallColor = color(247, 210, 60);
 }
 
 void draw() {
-  switch(gameState){
-    case GAME_START:
-      if(mouseX > BUTTON_LEFT && mouseX < BUTTON_RIGHT
-      && mouseY > BUTTON_TOP && mouseY < BUTTON_BOTTOM){
-        image(startHover, 0, 0);
-        if(mousePressed){
-          gameState = GAME_RUN;
-        }
-      }else{
-        image(startNormal, 0, 0);
+  switch(gameState) {
+  case GAME_START:
+    if (mouseX > BUTTON_LEFT && mouseX < BUTTON_RIGHT
+      && mouseY > BUTTON_TOP && mouseY < BUTTON_BOTTOM) {
+      image(startHover, 0, 0);
+      if (mousePressed) {
+        gameState = GAME_RUN;
       }
+    } else {
+      image(startNormal, 0, 0);
+    }
     break;
-    
-    case GAME_RUN:
-      image(bg, 0, 0);
-      image(ship, shipX, shipY);
-      
-      // draw walls
-      stroke(wallColor);
-      strokeWeight(5);
-      line(0, wall1Y, width, wall1Y);
-      line(0, wall2Y, width, wall2Y);
-      line(0, wall3Y, width, wall3Y);
-      
-      break;
-      
-    case GAME_WIN:
-      image(win, 0, 0);
-      break;
-      
-    case GAME_LOSE:
-      image(lose, 0, 0);
-      break;
+
+  case GAME_RUN:
+    image(bg, 0, 0);
+    image(ship, shipX, shipY);
+
+    // draw walls
+    stroke(wallColor);
+    strokeWeight(5);
+    line(0, wall1Y, width, wall1Y);
+    line(0, wall2Y, width, wall2Y);
+    line(0, wall3Y, width, wall3Y);
+
+    if (shipY> winningLineY) {
+      gameState = GAME_WIN;
+    } else if(ship )
+
+    break;
+
+  case GAME_WIN:
+    image(win, 0, 0);
+    break;
+
+  case GAME_LOSE:
+    image(lose, 0, 0);
+    break;
   }
 }
 
-void keyPressed(){
+void keyPressed() {
   // DO NOT REMOVE THIS PART!!!
   // USED FOR DEBUGGING
-  switch (key){
-    case '1':
-      gameState = GAME_START;
-      break;
-    case '2':
-      gameState = GAME_RUN;
-      break;
-    case '3':
-      gameState = GAME_WIN;
-      break;
-    case '4':
-      gameState = GAME_LOSE;
-      break;  
+  switch (key) {
+  case '1':
+    gameState = GAME_START;
+    break;
+  case '2':
+    gameState = GAME_RUN;
+    break;
+  case '3':
+    gameState = GAME_WIN;
+    break;
+  case '4':
+    gameState = GAME_LOSE;
+    break;
   }
   // Your code start from here
-  
+  if (key == CODED) {
+
+    if (keyCode == UP) {
+      shipY-=shipSpeed;
+    } else if (keyCode == DOWN) {
+      shipY+=shipSpeed;
+    } else if (keyCode == LEFT) {
+      shipX-=shipSpeed;
+    } else if (keyCode == RIGHT) {
+      shipX+=shipSpeed;
+    }
+  }
 }
 
-void keyReleased(){
-
+void keyReleased() {
 }
