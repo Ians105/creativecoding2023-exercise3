@@ -75,33 +75,35 @@ void draw() {
     // draw walls
     stroke(wallColor);
     strokeWeight(5);
-    
-    
+
+
     line(0, wall1Y, wall1X, wall1Y);
     line(wall1X+wall1HoleWidth, wall1Y, width, wall1Y);
-    
+
     line(0, wall2Y, wall2X, wall2Y);
     line(wall2X+wall2HoleWidth, wall2Y, width, wall2Y);
-    
+
     line(0, wall3Y, wall3X, wall3Y);
     line(wall3X+wall3HoleWidth, wall3Y, width, wall3Y);
-    
+
     wall1X+=wall1Speed;
     wall2X+=wall2Speed;
     wall3X+=wall3Speed;
-    
-    if(wall1X+wall1HoleWidth>width || wall1X<0){
+
+    if (wall1X+wall1HoleWidth>width || wall1X<0) {
       wall1Speed*=-1;
     }
-    if(wall2X+wall2HoleWidth>width || wall2X<0){
+    if (wall2X+wall2HoleWidth>width || wall2X<0) {
       wall2Speed*=-1;
     }
-    if(wall3X+wall3HoleWidth>width || wall3X<0){
+    if (wall3X+wall3HoleWidth>width || wall3X<0) {
       wall3Speed*=-1;
     }
 
     if (shipY> winningLineY) {
       gameState = GAME_WIN;
+    } else if (shipYwall1Y) {
+      
     }
 
     break;
